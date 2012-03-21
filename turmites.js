@@ -15,25 +15,20 @@ function fit(x, width){
   return x;}
 
 function Turmite(options) {
-  this.color     = options.color || 0;
   this.direction = options.direction || [0, 1];
   this.height    = options.height || 300;
   this.moves     = options.moves || [];
   this.state     = options.state || 0;
   this.width     = options.width || 400;
-  this.world     = [];
 
   this.position  = options.position || [Math.round((this.width-1)/2),
                                         Math.round((this.height-1)/2)];
 
-  this.step = function step(){
+  this.step = function (color) {
     var x = this.position[0];
     var y = this.position[1];
-    this.world[x] = this.world[x] || [];
-    var color = this.world[x][y] || this.color;
     var move = this.moves[color][this.state];
 
-    this.world[x][y] = move.color;
     this.state = move.state || this.state;
     this.direction = turn(this.direction, move.turns);
     this.position[0] = fit(x+this.direction[0], this.width);
@@ -44,20 +39,21 @@ function Turmite(options) {
 function combine(){
   var ants = arguments;
   var result = {};
-  result.step = function(){
+  result.step = function(world){
     result = {};
     for (i = 0; i < ants.length; i++){
-      var step = ants[i].step();
+      var step = ants[i].step((world[ants[i].position]) || 0);
       var x = step.x; var y = step.y;
       result[x] = result[x] || {};
       result[x][y] = step.color;};
     return result;};
   return result;}
 
-function draw(ant, colors, context, data, image) {
-  var step = ant.step();
+function draw(ant, colors, context, data, image, world) {
+  var step = ant.step(world);
   for(var x in step)
     for(var y in step[x]) {
+      world[[x,y]] = step[x][y];
       data.set(colors[step[x][y]], 4*image.width*y + 4*x);
       context.putImageData(image, 0, 0, x, y, 1, 1);};
 }
@@ -83,7 +79,8 @@ function start(){
     ants[i].height = height;
     ants[i].width = width;}
   var ant = combine.apply(undefined, ants);
+  var world = {};
   setInterval(draw, 4, ant, [[255, 255, 255, 255] ,[0, 0, 0, 255]], context,
-                       image.data, image);
+                       image.data, image, world);
 }
 
