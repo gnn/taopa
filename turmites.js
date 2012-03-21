@@ -40,7 +40,7 @@ function Turmite(options) {
     this.position[0] = fit(x+this.direction[0], this.width);
     this.position[1] = fit(y+this.direction[1], this.height);
 
-    return {"x": this.position[0], "y": this.position[1],
+    return {"x": x, "y": y,
             "color": this.colors[move.color]};}}
 
 function combine(){
