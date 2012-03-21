@@ -16,7 +16,6 @@ function fit(x, width){
 
 function Turmite(options) {
   this.color     = options.color || 0;
-  this.colors    = options.colors || [];
   this.direction = options.direction || [0, 1];
   this.height    = options.height || 300;
   this.moves     = options.moves || [];
@@ -40,8 +39,7 @@ function Turmite(options) {
     this.position[0] = fit(x+this.direction[0], this.width);
     this.position[1] = fit(y+this.direction[1], this.height);
 
-    return {"x": x, "y": y,
-            "color": this.colors[move.color]};}}
+    return {"x": x, "y": y, "color": move.color};}}
 
 function combine(){
   var ants = arguments;
@@ -52,24 +50,15 @@ function combine(){
       var step = ants[i].step();
       var x = step.x; var y = step.y;
       result[x] = result[x] || {};
-      result[x][y] = (result[x][y] || []).concat([step.color]);};
-    for(var x in result)
-      for(var y in result[x]){
-        var l = result[x][y].length;
-        var color = [ 0, 0, 0, 0];
-        for(var c = 0; c < 4; c++) {
-          for(var i = 0; i < l; i++) color[c] += result[x][y][i][c]; 
-          color[c] = Math.round(color[c]/l);}
-        result[x][y] = color;
-      };
+      result[x][y] = step.color;};
     return result;};
   return result;}
 
-function draw(ant, context, data, image) {
+function draw(ant, colors, context, data, image) {
   var step = ant.step();
   for(var x in step)
     for(var y in step[x]) {
-      data.set(step[x][y], 4*image.width*y + 4*x);
+      data.set(colors[step[x][y]], 4*image.width*y + 4*x);
       context.putImageData(image, 0, 0, x, y, 1, 1);};
 }
 
@@ -78,11 +67,9 @@ function start(){
   var height  = canvas.height;
   var width   = canvas.width;
   var langton = new Turmite({
-    "colors": [[255, 255, 255, 255] ,[0, 0, 0, 255]],
     "moves": [[{"color": 1, "turns": 3}], [{"color": 0, "turns": 1}]]});
 
-  var line = new Turmite({colors: [[0, 0, 0, 255]],
-                          direction: [-1, 0],
+  var line = new Turmite({direction: [-1, 0],
                           moves: [[{color: 0, turns: 0}]]});
 
   var context = canvas.getContext("2d");
@@ -92,11 +79,11 @@ function start(){
               new Turmite({position: [639,237], direction: [ 0, 1]}),
               new Turmite({position: [212,237], direction: [-1, 0]})];
   for (var i = 0; i < ants.length; i++) {
-    ants[i].colors = langton.colors;
     ants[i].moves = langton.moves;
     ants[i].height = height;
     ants[i].width = width;}
   var ant = combine.apply(undefined, ants);
-  setInterval(draw, 4, ant, context, image.data, image);
+  setInterval(draw, 4, ant, [[255, 255, 255, 255] ,[0, 0, 0, 255]], context,
+                       image.data, image);
 }
 
