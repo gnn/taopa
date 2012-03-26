@@ -45,7 +45,8 @@ function combine(){
       var step = ants[i].step((world[ants[i].position]) || 0);
       var x = step.x; var y = step.y;
       result[x] = result[x] || {};
-      result[x][y] = step.color;};
+      result[x][y] = result[x][y] || {};
+      result[x][y][i] = step.color;};
     return result;};
   return result;}
 
@@ -58,8 +59,18 @@ function draw(ant, colors, context, data, image, world) {
   var step = ant.step(world);
   for(var x in step)
     for(var y in step[x]) {
-      world[[x,y]] = step[x][y];
-      data.set(colors[step[x][y]], 4*image.width*y + 4*x);
+      var cs = [];
+      for (var i in step[x][y]) {
+        world[[x,y]] = step[x][y][i];
+        cs.push(colors[+step[x][y][i] + (+i * 2)]);
+      };
+      var color = [0, 0, 0, 0];
+      for (i = 0; i < 4; i++) {
+        for (var c = 0; c < cs.length; c++) { color[i] += cs[c][i]; }
+        color[i] = Math.round(color[i] / cs.length);
+      };
+
+      data.set(color, 4*image.width*y + 4*x);
       context.putImageData(image, 0, 0, x, y, 1, 1);};
 }
 
@@ -102,7 +113,6 @@ function start(){
              [0, 0, 255, 255], [0, 0, 0x80, 255],
              [255, 0, 255, 255], [0x80, 0, 0x80, 255]];
 
-  setTimeout(draw, delay, ant, [[255, 255, 255, 255] ,[0, 0, 0, 255]], context,
-                       image.data, image, world);
+  setTimeout(draw, delay, ant, web, context, image.data, image, world);
 }
 
