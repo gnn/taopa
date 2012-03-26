@@ -49,7 +49,12 @@ function combine(){
     return result;};
   return result;}
 
+var delay = 4;
+
+function setDelay(d) { delay = d; }
+
 function draw(ant, colors, context, data, image, world) {
+  setTimeout(draw, delay, ant, colors, context, data, image, world);
   var step = ant.step(world);
   for(var x in step)
     for(var y in step[x]) {
@@ -97,7 +102,7 @@ function start(){
              [0, 0, 255, 255], [0, 0, 0x80, 255],
              [255, 0, 255, 255], [0x80, 0, 0x80, 255]];
 
-  setInterval(draw, 4, ant, [[255, 255, 255, 255] ,[0, 0, 0, 255]], context,
+  setTimeout(draw, delay, ant, [[255, 255, 255, 255] ,[0, 0, 0, 255]], context,
                        image.data, image, world);
 }
 
