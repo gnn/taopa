@@ -15,10 +15,12 @@ function fit(x, width){
   return x;}
 
 function Turmite(options) {
+  this.colors    = Math.min(Math.max(options.colors || 5, 2), 5);
   this.direction = options.direction || [0, 1];
   this.height    = options.height || 300;
   this.moves     = options.moves || [];
   this.state     = options.state || 0;
+  this.states    = Math.max(options.states || 2, 2);
   this.width     = options.width || 400;
 
   this.position  = options.position || [Math.round((this.width-1)/2),
@@ -27,6 +29,12 @@ function Turmite(options) {
   this.step = function (color) {
     var x = this.position[0];
     var y = this.position[1];
+    this.moves[color] = this.moves[color] || [];
+    this.moves[color][this.state] = this.moves[color][this.state] || {
+      color: Math.floor(Math.random() * this.colors),
+      state: Math.floor(Math.random() * this.states),
+      turns: Math.floor(Math.random() * 4)
+    };
     var move = this.moves[color][this.state];
 
     this.state = move.state || this.state;
@@ -95,6 +103,10 @@ function start(){
     ants[i].height = height;
     ants[i].width = width;}
   var ant = combine.apply(undefined, ants);
+  var random = combine(new Turmite({
+    position: [425, 157], direction: [0, -1], "width": width, "height": height,
+    colors: 5, states: 7
+  }));
   var world = {};
   var colors = [[255, 255, 255, 255], [0, 0, 0, 255],
                 [0, 255, 255, 255], [255, 0, 0, 255],
