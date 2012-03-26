@@ -94,10 +94,14 @@ function start(){
 
   var context = canvas.getContext("2d");
   var image   = context.getImageData(0, 0, width, height);
-  var ants = [new Turmite({position: [212, 78], direction: [ 0,-1]}),
-              new Turmite({position: [639, 78], direction: [ 1, 0]}),
-              new Turmite({position: [639,237], direction: [ 0, 1]}),
-              new Turmite({position: [212,237], direction: [-1, 0]})];
+  var ants = [new Turmite({position: [351, 124], direction: [ 1, 0]}),
+              new Turmite({position: [124, 147], direction: [ 0,-1]}),
+              new Turmite({position: [147, 374], direction: [-1, 0]}),
+              new Turmite({position: [374, 351], direction: [ 0, 1]}),
+              new Turmite({position: [226,  37], direction: [ 1,-1]}),
+              new Turmite({position: [461, 226], direction: [ 1, 1]}),
+              new Turmite({position: [272, 461], direction: [-1, 1]}),
+              new Turmite({position: [ 37, 272], direction: [-1,-1]})];
   for (var i = 0; i < ants.length; i++) {
     ants[i].moves = langton.moves;
     ants[i].height = height;
