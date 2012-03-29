@@ -3,12 +3,19 @@
   </head>
   <body>
     <div>
-      <button onclick="start()">Start</button>
+      <button id=start>Start</button>
       <label for="delay">Delay: </label>
-      <input type="text" id="delay" value="4" onchange="setDelay(+value)"/>
+      <input type="text" id="delay" value="4"/>
     </div>
     <canvas id="world" style="border: thin solid black; background: orange"
             width="500" height="500" />
+    <script src="jquery-1.7.2.js"></script>
     <script type="text/javascript" src="turmites.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#start').click(start);
+        $('#delay').change(function(){ delay = +$(this).val(); });
+      });
+    </script>
   </body>
 </html>
