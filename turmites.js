@@ -117,7 +117,7 @@ function start(){
     ants[i].width = width;}
   var ant = combine.apply(undefined, ants);
   var random = combine(new Turmite({
-    position: [425, 157], direction: [0, -1], "width": width, "height": height,
+    direction: [0, -1], "width": width, "height": height,
     colors: 5, states: 7
   }));
   var world = {};
