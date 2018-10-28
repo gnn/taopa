@@ -78,7 +78,7 @@ function draw(ant, colors, context, data, image, world) {
         color[i] = Math.round(color[i] / cs.length);
       };
 
-      data.set(color, 4*image.width*y + 4*x);
+      data.set(color, 4*image.width*(+y) + 4*(+x));
       context.putImageData(image, 0, 0, x, y, 1, 1);};
 }
 
