@@ -85,7 +85,6 @@ function draw(ant, colors, context, data, image, world) {
 function animate(ant, colors, context, data, image, world) {
   var as = arguments;
   setTimeout(animate, delay, ant, colors, context, data, image, world);
-  //draw.apply(undefined, as);
   for (var i = 0; i < 7; i++) { draw.apply(undefined, as); };
 }
 
