@@ -101,14 +101,16 @@ function start(){
 
   var context = canvas.getContext("2d");
   var image   = context.getImageData(0, 0, width, height);
-  var ants = [new Turmite({position: [402,  35], direction: [ 1,-1]}),
-              new Turmite({position: [474,  85], direction: [ 1, 0]}),
-              new Turmite({position: [353, 108], direction: [ 0,-1]}),
-              new Turmite({position: [547, 134], direction: [ 1, 1]}),
-              new Turmite({position: [448, 279], direction: [-1, 1]}),
-              new Turmite({position: [303, 180], direction: [-1,-1]}),
-              new Turmite({position: [376, 229], direction: [-1, 0]}),
-              new Turmite({position: [497, 206], direction: [ 0, 1]})];
+  function offset(x, y){ return [((width-1)/2)+x, ((height-1)/2)+y]; }
+  var ants = [new Turmite({position: offset( -23,-122), direction: [ 1,-1]}),
+              new Turmite({position: offset( +49, -72), direction: [ 1, 0]}),
+              new Turmite({position: offset( -72, -49), direction: [ 0,-1]}),
+              new Turmite({position: offset(+122, -23), direction: [ 1, 1]}),
+              new Turmite({position: offset( +23,+122), direction: [-1, 1]}),
+              new Turmite({position: offset(-122, +23), direction: [-1,-1]}),
+              new Turmite({position: offset( -49, +72), direction: [-1, 0]}),
+              new Turmite({position: offset( +72, +49), direction: [ 0, 1]})];
+
   for (var i = 0; i < ants.length; i++) {
     ants[i].moves = langton.moves;
     ants[i].height = height;
