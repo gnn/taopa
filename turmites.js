@@ -20,7 +20,7 @@ function Turmite(options) {
   this.height    = options.height || 300;
   this.moves     = options.moves || [];
   this.state     = options.state || 0;
-  this.states    = Math.max(options.states || 2, 2);
+  this.states    = Math.max(options.states || 1, 1);
   this.width     = options.width || 400;
 
   this.position  = options.position || [Math.round((this.width-1)/2),
