@@ -63,7 +63,6 @@ var delay = 4;
 function setDelay(d) { delay = d; }
 
 function draw(ant, colors, context, data, image, world) {
-  setTimeout(draw, delay, ant, colors, context, data, image, world);
   var step = ant.step(world);
   for(var x in step)
     for(var y in step[x]) {
@@ -81,6 +80,13 @@ function draw(ant, colors, context, data, image, world) {
       data.set(color, 4*image.width*(+y) + 4*(+x));
       context.putImageData(image, 0, 0, x, y, 1, 1);
     };
+}
+
+function animate(ant, colors, context, data, image, world) {
+  var as = arguments;
+  setTimeout(animate, delay, ant, colors, context, data, image, world);
+  //draw.apply(undefined, as);
+  for (var i = 0; i < 7; i++) { draw.apply(undefined, as); };
 }
 
 function start(){
@@ -133,7 +139,6 @@ function start(){
              [0, 255, 255, 255], [0, 0x80, 0x80, 255],
              [0, 0, 255, 255], [0, 0, 0x80, 255],
              [255, 0, 255, 255], [0x80, 0, 0x80, 255]];
-
-  setTimeout(draw, delay, ant, web, context, image.data, image, world);
+  setTimeout(animate, delay, ant, bw, context, image.data, image, world);
 }
 
