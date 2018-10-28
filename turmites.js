@@ -79,7 +79,8 @@ function draw(ant, colors, context, data, image, world) {
       };
 
       data.set(color, 4*image.width*(+y) + 4*(+x));
-      context.putImageData(image, 0, 0, x, y, 1, 1);};
+      context.putImageData(image, 0, 0, x, y, 1, 1);
+    };
 }
 
 function start(){
