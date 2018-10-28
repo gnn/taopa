@@ -7,7 +7,7 @@ function turn(direction, turns){
     case "b": return turn(direction, 2);
     case "r": return turn(direction, 3);
     case   0: return direction;
-    default : return turn([-direction[1], direction[0]], --turns);};}
+    default : return turn([-direction[1], direction[0]], turns-1);};}
 
 function fit(x, width){
   if (x >= width) { x %= width; }
