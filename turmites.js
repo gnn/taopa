@@ -120,6 +120,7 @@ function start(){
     direction: [0, -1], "width": width, "height": height,
     colors: 4, states: 1
   }));
+  // var ant = random;
   var world = {};
   var bw = [[255, 255, 255, 255], [0, 0, 0, 255]];
   for (var i = 0; i < 8; i++) {
