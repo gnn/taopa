@@ -12,6 +12,11 @@
           <label for="delay">Stride: </label>
           <input type="text" id="stride" value="7" style="width: 5em"/>
         </div>
+        <div id="control-palette">
+          <label for="palette">Palette: </label>
+          <select id="palette" style="width: 5em">
+          </select>
+        </div>
       </div>
       <button id=start>Start</button>
     </div>
@@ -24,9 +29,16 @@
     <script>
       $(document).ready(function(){
         var selected = "bw";
+        $('#palette').change(function(e){
+          selected = $('#palette')[0].value;
+        });
         $('#start').click(function(){ start(selected); });
         $('#delay').change(function(){ delay = +$(this).val(); });
         $('#stride').change(function(){ animate.stride = +$(this).val(); });
+        for (var palette of palettes.keys()){
+          $('#palette').append(
+              '<option value="' + palette +'">' + palette + '</option>');
+        };
       });
     </script>
   </body>
