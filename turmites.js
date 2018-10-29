@@ -87,8 +87,9 @@ function draw(ant, colors, context, data, image, world) {
 function animate(ant, colors, context, data, image, world) {
   var as = arguments;
   setTimeout(animate, delay, ant, colors, context, data, image, world);
-  for (var i = 0; i < 7; i++) { draw.apply(undefined, as); };
+  for (var i = 0; i < animate.stride; i++) { draw.apply(undefined, as); };
 }
+animate.stride = 7
 
 function start(){
   var canvas  = document.getElementById("world");
