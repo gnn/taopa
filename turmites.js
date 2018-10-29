@@ -9,12 +9,15 @@ function turn(direction, turns){
     case "b": return turn(direction, 2);
     case "r": return turn(direction, 3);
     case   0: return direction;
-    default : return turn([-direction[1], direction[0]], turns-1);};}
+    default : return turn([-direction[1], direction[0]], turns-1);
+  };
+}
 
 function fit(x, width){
   if (x >= width) { x %= width; }
   else if (x < 0) { x = width+x; }
-  return x;}
+  return x;
+}
 
 function Turmite(options) {
   this.colors    = Math.min(Math.max(options.colors || 5, 2), 5);
@@ -44,7 +47,9 @@ function Turmite(options) {
     this.position[0] = fit(x+this.direction[0], this.width);
     this.position[1] = fit(y+this.direction[1], this.height);
 
-    return {"x": x, "y": y, "color": move.color};}}
+    return {"x": x, "y": y, "color": move.color};
+  };
+}
 
 function combine(){
   var ants = arguments;
@@ -57,8 +62,10 @@ function combine(){
       result[x] = result[x] || {};
       result[x][y] = result[x][y] || {};
       result[x][y][i] = step.color;};
-    return result;};
-  return result;}
+    return result;
+  };
+  return result;
+}
 
 var delay = 4;
 
