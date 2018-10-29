@@ -78,7 +78,7 @@ function draw(ant, colors, context, data, image, world) {
       var cs = [];
       for (var i in step[x][y]) {
         world[[x,y]] = step[x][y][i];
-        cs.push(colors[+step[x][y][i] + (+i * 2)]);
+        cs.push(colors[(+step[x][y][i] + (+i * 2)) % colors.length]);
       };
       var color = [0, 0, 0, 0];
       for (var i = 0; i < 4; i++) {
@@ -131,10 +131,6 @@ function start(){
   }));
   // var ant = random;
   var world = {};
-  var bw = [[255, 255, 255, 255], [0, 0, 0, 255]];
-  for (var i = 0; i < 8; i++) {
-    bw = bw.concat([[255, 255, 255, 255], [0, 0, 0, 255]]);
-  };
   var colors = [[255, 255, 255, 255], [0, 0, 0, 255],
                 [0, 255, 255, 255], [255, 0, 0, 255],
                 [255, 0, 255, 255], [0, 255, 0, 255],
