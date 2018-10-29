@@ -108,6 +108,15 @@ function greyscale(length) {
   return result.reverse();
 }
 
+function overlapping(palette) {
+  var result = palette.slice(0);
+  for (var i = result.length-1; i > 0; i--) {
+    result.splice(i, 0, [result[i-1][1], result[i][0]]);
+  };
+  result.push([result[result.length-1][1], result[0][0]]);
+  return result;
+}
+
 var palettes = new Map([
     ["bw", [[255, 255, 255, 255], [0, 0, 0, 255]]],
     ["complement",
