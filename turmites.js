@@ -98,6 +98,16 @@ function animate(ant, colors, context, data, image, world) {
 }
 animate.stride = 7
 
+function greyscale(length) {
+  var step = 255 / (length-1);
+  var result = [];
+  for (var i = 0; i < length; i++) {
+    var grey = Math.round(step * i);
+    result.push([grey, grey, grey, 255]);
+  };
+  return result.reverse();
+}
+
 var palettes = new Map([
     ["bw", [[255, 255, 255, 255], [0, 0, 0, 255]]],
     ["complement",
