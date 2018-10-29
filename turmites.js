@@ -1,3 +1,5 @@
+'use strict';
+
 function turn(direction, turns){
   var result = undefined;
   if (turns < 0) { turns = 4 - (-turns % 4); }
@@ -49,7 +51,7 @@ function combine(){
   var result = {};
   result.step = function(world){
     result = {};
-    for (i = 0; i < ants.length; i++){
+    for (var i = 0; i < ants.length; i++){
       var step = ants[i].step((world[ants[i].position]) || 0);
       var x = step.x; var y = step.y;
       result[x] = result[x] || {};
@@ -72,7 +74,7 @@ function draw(ant, colors, context, data, image, world) {
         cs.push(colors[+step[x][y][i] + (+i * 2)]);
       };
       var color = [0, 0, 0, 0];
-      for (i = 0; i < 4; i++) {
+      for (var i = 0; i < 4; i++) {
         for (var c = 0; c < cs.length; c++) { color[i] += cs[c][i]; }
         color[i] = Math.round(color[i] / cs.length);
       };
