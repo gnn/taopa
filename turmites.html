@@ -8,6 +8,10 @@
           <label for="delay">Delay: </label>
           <input type="text" id="delay" value="0" style="width: 5em"/>
         </div>
+        <div id="control-stride">
+          <label for="delay">Stride: </label>
+          <input type="text" id="stride" value="7" style="width: 5em"/>
+        </div>
       </div>
       <button id=start>Start</button>
     </div>
@@ -21,6 +25,7 @@
       $(document).ready(function(){
         $('#start').click(start);
         $('#delay').change(function(){ delay = +$(this).val(); });
+        $('#stride').change(function(){ animate.stride = +$(this).val(); });
       });
     </script>
   </body>
