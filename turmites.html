@@ -23,7 +23,8 @@
     <script type="text/javascript" src="turmites.js"></script>
     <script>
       $(document).ready(function(){
-        $('#start').click(start);
+        var selected = "bw";
+        $('#start').click(function(){ start(selected); });
         $('#delay').change(function(){ delay = +$(this).val(); });
         $('#stride').change(function(){ animate.stride = +$(this).val(); });
       });

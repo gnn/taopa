@@ -120,7 +120,7 @@ var palettes = new Map([
        [0, 0, 255, 255], [0, 0, 0x80, 255],
        [255, 0, 255, 255], [0x80, 0, 0x80, 255]]]]);
 
-function start(){
+function start(palette){
   var canvas  = document.getElementById("world");
   var height  = canvas.height;
   var width   = canvas.width;
@@ -153,7 +153,7 @@ function start(){
   }));
   // var ant = random;
   var world = {};
-  setTimeout(animate, delay, ant, palettes.get("bw"), context, image.data,
+  setTimeout(animate, delay, ant, palettes.get(palette), context, image.data,
       image,
       world);
 }
