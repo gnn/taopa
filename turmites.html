@@ -2,13 +2,19 @@
   <head>
   </head>
   <body>
-    <div>
+    <div style="display: inline-block; vertical-align: top">
+      <div id="animation-controls">
+        <div id="control-delay">
+          <label for="delay">Delay: </label>
+          <input type="text" id="delay" value="0" style="width: 5em"/>
+        </div>
+      </div>
       <button id=start>Start</button>
-      <label for="delay">Delay: </label>
-      <input type="text" id="delay" value="0"/>
     </div>
-    <canvas id="world" style="border: thin solid black; background: red"
-            width="945" height="945" />
+    <div style="display: inline-block;">
+      <canvas id="world" style="border: thin solid black; background: red"
+              width="945" height="945" />
+    </div>
     <script src="jquery-1.7.2.js"></script>
     <script type="text/javascript" src="turmites.js"></script>
     <script>
