@@ -25,11 +25,19 @@ function Turmite(options) {
   this.height    = options.height || 300;
   this.moves     = options.moves || [];
   this.state     = options.state || 0;
-  this.states    = Math.max(options.states || 1, 1);
+  this.states    = Math.max(options.states || 1/0, 1);
   this.width     = options.width || 400;
 
   this.position  = options.position || [Math.round((this.width-1)/2),
                                         Math.round((this.height-1)/2)];
+
+  var random_state = function (turmite) {
+    if (isFinite(turmite.states)) {
+      return Math.floor(Math.random() * turmite.states);
+    } else {
+      return Math.floor(Math.random() * (turmite.state + 2));
+    };
+  };
 
   this.step = function (color) {
     var x = this.position[0];
@@ -37,7 +45,7 @@ function Turmite(options) {
     this.moves[color] = this.moves[color] || [];
     this.moves[color][this.state] = this.moves[color][this.state] || {
       color: Math.floor(Math.random() * this.colors),
-      state: Math.floor(Math.random() * this.states),
+      state: random_state(this),
       turns: Math.floor(Math.random() * 4)
     };
     var move = this.moves[color][this.state];
