@@ -20,7 +20,7 @@ function fit(x, width){
 }
 
 function Turmite(options) {
-  this.colors    = Math.min(Math.max(options.colors || 5, 2), 5);
+  this.colors    = Math.max(options.colors || Math.pow(255, 3), 2);
   this.direction = options.direction || [0, 1];
   this.height    = options.height || 300;
   this.moves     = options.moves || [];
