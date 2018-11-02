@@ -28,7 +28,7 @@
     <script type="text/javascript" src="turmites.js"></script>
     <script>
       $(document).ready(function(){
-        var selected = "bw";
+        var selected = "random";
         $('#palette').change(function(e){
           selected = $('#palette')[0].value;
         });
@@ -37,7 +37,11 @@
         $('#stride').change(function(){ animate.stride = +$(this).val(); });
         for (var palette of palettes.keys()){
           $('#palette').append(
-              '<option value="' + palette +'">' + palette + '</option>');
+              '<option ' +
+              (selected === palette ? "selected " : "") +
+              '"value="' + palette +'">' +
+              palette +
+              '</option>');
         };
       });
     </script>
