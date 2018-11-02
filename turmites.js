@@ -138,6 +138,27 @@ var palettes = new Map([
         [0, 255, 255, 255], [255, 0, 0, 255],
         [255, 0, 255, 255], [0, 255, 0, 255],
         [255, 255, 0, 255], [0, 0, 255, 255]])],
+    ["random", new Proxy({length: Math.pow(255, 3), array: new Array()}, {
+      get: function (o, key) {
+        try {
+          var i = +key;
+        } catch (error) {
+          return o[key];
+        }
+        if (!Number.isInteger(i)) { return o[key] };
+        if (i < o.array.length) { return o.array[i]; };
+        while (i >= o.array.length) {
+          do {
+            var color = [
+              Math.floor(Math.random() * 256),
+              Math.floor(Math.random() * 256),
+              Math.floor(Math.random() * 256),
+              255]
+          } while (o.array.includes(color));
+          o.array.push(color);
+        };
+        return color;
+      }})],
     ["shaded",
      [[0xFF, 0xFF, 0xFF, 255], [0x00, 0x00, 0x00, 255],
       [0xFF, 0, 0, 255], [0x7F, 0, 0, 255],
