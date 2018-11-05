@@ -1,5 +1,26 @@
 <html>
   <head>
+    <script type="text/javascript" src="jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="turmites.js"></script>
+    <script>
+      $(document).ready(function(){
+        var selected = "random";
+        $('#palette').change(function(e){
+          selected = $('#palette')[0].value;
+        });
+        $('#start').click(function(){ start(selected); });
+        $('#delay').change(function(){ delay = +$(this).val(); });
+        $('#stride').change(function(){ animate.stride = +$(this).val(); });
+        for (var palette of palettes.keys()){
+          $('#palette').append(
+              '<option ' +
+              (selected === palette ? "selected " : "") +
+              '"value="' + palette +'">' +
+              palette +
+              '</option>');
+        };
+      });
+    </script>
   </head>
   <body>
     <div style="display: inline-block; vertical-align: top">
@@ -24,26 +45,6 @@
       <canvas id="world" style="border: thin solid black; background: grey"
               width="701" height="701" />
     </div>
-    <script src="jquery-1.7.2.js"></script>
-    <script type="text/javascript" src="turmites.js"></script>
-    <script>
-      $(document).ready(function(){
-        var selected = "random";
-        $('#palette').change(function(e){
-          selected = $('#palette')[0].value;
-        });
-        $('#start').click(function(){ start(selected); });
-        $('#delay').change(function(){ delay = +$(this).val(); });
-        $('#stride').change(function(){ animate.stride = +$(this).val(); });
-        for (var palette of palettes.keys()){
-          $('#palette').append(
-              '<option ' +
-              (selected === palette ? "selected " : "") +
-              '"value="' + palette +'">' +
-              palette +
-              '</option>');
-        };
-      });
-    </script>
   </body>
 </html>
+
