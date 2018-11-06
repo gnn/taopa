@@ -1,10 +1,5 @@
 [class^=column-] { display: inline-block; }
 #animation-controls {border: 1px solid black; padding: 1ex; }
 #delay, #palette, #stride { width: 5em; text-align: right; }
-#world {
-  background: grey;
-  border: thin solid black;
-  height: 701;
-  width: 701;
-}
+#world { background: grey; border: thin solid black; }
 
