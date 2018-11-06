@@ -1,3 +1,5 @@
+'use strict';
+
 $(document).ready(function () {
   var selected = "random";
   $('#palette').change(function (e) {
