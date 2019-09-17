@@ -1,4 +1,5 @@
 ---
+title: "A different title"
 layout: none
 ---
 
