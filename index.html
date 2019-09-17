@@ -6,7 +6,7 @@
 <p><a href="turmites.html">Turmites</a></p>
 
 {% for f in site.static_files %}
-<p>Path: <a href="{{f.path}}">{{f.path}}</a></p>
+<p>Path: <a href=".{{f.path}}">.{{f.path}}</a></p>
 <p>Mod.: {{f.modified_time}}</p>
 <p>Name: {{f.name}}</p>
 {% endfor %}
