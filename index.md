@@ -6,7 +6,7 @@
 {% for f in site.static_files %}
 `{{f.name}}`:
 
-  * `Path`: [.{{f.path}}]
+  * `Path`: [.{{f.path}}](.{{f.path}})
   * `Mod.`: {{f.modified_time}}
 
 {% endfor %}
