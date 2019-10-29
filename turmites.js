@@ -1,3 +1,5 @@
+export {animate, delay, palettes, start};
+
 'use strict';
 
 function turn(direction, turns){

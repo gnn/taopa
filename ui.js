@@ -1,3 +1,5 @@
+import * as turmites from './turmites.js';
+
 'use strict';
 
 function fit_columns() {
@@ -36,10 +38,10 @@ $(document).ready(function () {
   $('#palette').change(function (e) {
     selected = $('#palette')[0].value;
   });
-  $('#start').click(function () { start(selected); });
-  $('#delay').change(function () { delay = +$(this).val(); });
-  $('#stride').change(function () { animate.stride = +$(this).val(); });
-  for (var palette of palettes.keys()){
+  $('#start').click(function () { turmites.start(selected); });
+  $('#delay').change(function () { turmites.delay = +$(this).val(); });
+  $('#stride').change(function () { turmites.animate.stride = +$(this).val(); });
+  for (var palette of turmites.palettes.keys()){
     $('#palette').append(
         '<option ' +
         (selected === palette ? "selected " : "") +
