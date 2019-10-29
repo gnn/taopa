@@ -1,6 +1,5 @@
 ---
 title: "Taopa"
-layout: none
 ---
 
 # Taopa: turmites and other pixel art
