@@ -77,7 +77,7 @@ function combine(){
   var ants = arguments;
   var result = {};
   result.step = function(world){
-    result = {};
+    var result = {};
     for (var i = 0; i < ants.length; i++){
       var step = ants[i].step((world[ants[i].position]) || 0);
       var x = step.x; var y = step.y;
