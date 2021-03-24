@@ -49,6 +49,7 @@ $(document).ready(function () {
         palette +
         '</option>');
   };
+  $('#add').click(function () { turmites.add(turmites.ant); });
   fit_columns();
 });
 

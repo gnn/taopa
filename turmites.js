@@ -86,6 +86,7 @@ function combine(){
       result[x][y][i] = step.color;};
     return result;
   };
+  result.ants = ants;
   return result;
 }
 
@@ -206,6 +207,17 @@ var palettes = new Map([
     ["GS08OV", overlapping(greyscale(8))]]
 );
 
+var ant;
+
+function add(combination){
+  var random = new Turmite({
+    direction: [0, -1], "width": width, "height": height,
+    colors: 1/0, states: 1/0
+  });
+  combination.ants.push(random);
+  ant = combine.apply(undefined, combination.ants);
+};
+
 function start(palette){
   var canvas  = document.getElementById("world");
   var height  = canvas.height;
@@ -232,12 +244,12 @@ function start(palette){
     ants[i].moves = langton.moves;
     ants[i].height = height;
     ants[i].width = width;}
-  var ant = combine.apply(undefined, ants);
+  ant = combine.apply(undefined, ants);
   var random = combine(new Turmite({
     direction: [0, -1], "width": width, "height": height,
     colors: 1/0, states: 1/0
   }));
-  var ant = random;
+  ant = random;
   var world = {};
   setTimeout(animate, delay, ant, palettes.get(palette), context, image.data,
       image,
