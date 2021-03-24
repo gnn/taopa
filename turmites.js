@@ -22,7 +22,7 @@ function fit(x, width){
 }
 
 function Turmite(options) {
-  this.colors    = Math.max(options.colors || Math.pow(255, 3), 2);
+  this.colors    = Math.max(options.colors || 1/0, 2);
   this.direction = options.direction || [0, 1];
   this.height    = options.height || 300;
   this.moves     = options.moves || [];
@@ -37,7 +37,19 @@ function Turmite(options) {
     if (isFinite(turmite.states)) {
       return Math.floor(Math.random() * turmite.states);
     } else {
-      return Math.floor(Math.random() * (turmite.state + 2));
+      var states = Math.max.apply(
+        null, turmite.moves.map(function (a) { return a.length; })
+      );
+      return Math.floor(Math.random() * (states + 1));
+    };
+  };
+
+  var random_color = function (turmite) {
+    if (isFinite(turmite.colors)) {
+      return Math.floor(Math.random() * this.colors)
+    } else {
+      var colors = Math.min(turmite.moves.length+1, Math.pow(255, 3));
+      return Math.floor(Math.random() * colors);
     };
   };
 
@@ -46,7 +58,7 @@ function Turmite(options) {
     var y = this.position[1];
     this.moves[color] = this.moves[color] || [];
     this.moves[color][this.state] = this.moves[color][this.state] || {
-      color: Math.floor(Math.random() * this.colors),
+      color: random_color(this),
       state: random_state(this),
       turns: Math.floor(Math.random() * 4)
     };
@@ -223,7 +235,7 @@ function start(palette){
   var ant = combine.apply(undefined, ants);
   var random = combine(new Turmite({
     direction: [0, -1], "width": width, "height": height,
-    colors: 4, states: 1
+    colors: 1/0, states: 1/0
   }));
   // var ant = random;
   var world = {};
