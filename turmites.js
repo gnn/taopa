@@ -1,4 +1,4 @@
-export {animate, delay, palettes, start};
+export {add, animate, delay, palettes, start};
 
 'use strict';
 
