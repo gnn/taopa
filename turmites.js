@@ -75,8 +75,8 @@ function Turmite(options) {
 
 function combine(){
   var ants = arguments;
-  var result = {};
-  result.step = function(world){
+  var r = {};
+  r.step = function(world){
     var result = {};
     for (var i = 0; i < ants.length; i++){
       var step = ants[i].step((world[ants[i].position]) || 0);
@@ -87,7 +87,7 @@ function combine(){
     return result;
   };
   result.ants = ants;
-  return result;
+  return r;
 }
 
 var delay = 4;
