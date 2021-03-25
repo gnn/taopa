@@ -207,7 +207,7 @@ var palettes = new Map([
 
 var ant;
 
-function add(combination){
+function add(){
   var canvas  = document.getElementById("world");
   var height  = canvas.height;
   var width   = canvas.width;
@@ -215,8 +215,8 @@ function add(combination){
     direction: [0, -1], "width": width, "height": height,
     colors: 1/0, states: 1/0
   });
-  combination.ants.push(random);
-  ant = combine.apply(undefined, combination.ants);
+  ant.ants.push(random);
+  ant = combine.apply(undefined, ant.ants);
 };
 
 function start(palette){

@@ -49,7 +49,7 @@ $(document).ready(function () {
         palette +
         '</option>');
   };
-  $('#add').click(function () { turmites.add(turmites.ant); });
+  $('#add').click(turmites.add);
   fit_columns();
 });
 
