@@ -208,6 +208,9 @@ var palettes = new Map([
 var ant;
 
 function add(combination){
+  var canvas  = document.getElementById("world");
+  var height  = canvas.height;
+  var width   = canvas.width;
   var random = new Turmite({
     direction: [0, -1], "width": width, "height": height,
     colors: 1/0, states: 1/0
