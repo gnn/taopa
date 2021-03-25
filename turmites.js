@@ -249,7 +249,7 @@ function start(palette){
     direction: [0, -1], "width": width, "height": height,
     colors: 1/0, states: 1/0
   }));
-  ant = random;
+  // ant = random;
   var world = {};
   setTimeout(animate, delay, ant, palettes.get(palette), context, image.data,
       image,
