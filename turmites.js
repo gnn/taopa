@@ -74,7 +74,7 @@ function Turmite(options) {
 }
 
 function combine(){
-  var r = {"ants": arguments};
+  var r = {"ants": Array.prototype.slice.call(arguments)};
   r.step = function(world){
     var result = {};
     for (var i = 0; i < r.ants.length; i++){
