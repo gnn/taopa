@@ -216,7 +216,6 @@ function add(){
     colors: 1/0, states: 1/0
   });
   ant.ants.push(random);
-  ant = combine.apply(undefined, ant.ants);
 };
 
 function start(palette){
