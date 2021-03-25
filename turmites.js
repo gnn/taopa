@@ -74,19 +74,17 @@ function Turmite(options) {
 }
 
 function combine(){
-  var ants = arguments;
-  var r = {};
+  var r = {"ants": arguments};
   r.step = function(world){
     var result = {};
-    for (var i = 0; i < ants.length; i++){
-      var step = ants[i].step((world[ants[i].position]) || 0);
+    for (var i = 0; i < r.ants.length; i++){
+      var step = r.ants[i].step((world[r.ants[i].position]) || 0);
       var x = step.x; var y = step.y;
       result[x] = result[x] || {};
       result[x][y] = result[x][y] || {};
       result[x][y][i] = step.color;};
     return result;
   };
-  result.ants = ants;
   return r;
 }
 
